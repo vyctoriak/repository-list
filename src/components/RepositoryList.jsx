@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { RepositoryItem } from "./RepositoryItem";
 import '../styles/repositories.scss';
-import { User } from './User';
 
 // https://api.github.com/users/samuel1992/repos
 
@@ -28,17 +27,13 @@ export function RepositoryList() {
       .then(data => setRepositories(data))
   }, [])
 
-  // console.log(repositories)
-
   return (
     <section className="repository-list">
       <h1>Lista de repositórios</h1>
 
-      <h3>Respositórios do usuário: <User/> </h3>
-
       <ul>
         {repositories.map(repository => {
-          return <RepositoryItem repository={repository} />
+          return <RepositoryItem key={repository.name} repository={repository} />
         })}
       </ul>
     </section>
